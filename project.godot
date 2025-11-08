@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Prefabs"
+run/main_scene="uid://qrhbby8fgl0"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Quit="*res://scripts/quit.gd"
 
 [rendering]
 

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://qrhbby8fgl0"]
+
+[ext_resource type="Material" uid="uid://42n3alpifqpu" path="res://scenes/resources/camera_following_player.tres" id="1_rdmm2"]
+[ext_resource type="Script" uid="uid://bma5w2u6gmhhu" path="res://scripts/camera_3d.gd" id="2_eldjp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p1w1k"]
+size = Vector2(20, 20)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rdmm2"]
+
+[node name="CameraFollowingPlayer" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_rdmm2")
+mesh = SubResource("PlaneMesh_p1w1k")
+
+[node name="Player" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rdmm2")
+
+[node name="RotationHelper" type="Node3D" parent="Player"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/RotationHelper" node_paths=PackedStringArray("rotation_helper", "player")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 2, 3)
+script = ExtResource("2_eldjp")
+rotation_helper = NodePath("..")
+player = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5, 0)
+light_energy = 10.0
+spot_range = 20.0
