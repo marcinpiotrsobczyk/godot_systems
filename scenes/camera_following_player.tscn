@@ -18,6 +18,7 @@ size = Vector3(20, 0.1, 20)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5, 0)
 light_energy = 10.0
 spot_range = 20.0
+spot_angle = 75.0
 
 [node name="RotationHelper" type="Node3D" parent="."]
 
@@ -28,8 +29,9 @@ size = 3.0
 script = ExtResource("2_eldjp")
 rotation_helper = NodePath("..")
 
-[node name="Player" type="Node3D" parent="."]
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("2_8gnqd")
+camera = NodePath("../RotationHelper/Camera3D")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_rdmm2")

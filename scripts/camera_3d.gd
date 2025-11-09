@@ -55,7 +55,7 @@ func move_camera(delta: float) -> void:
 func rotate_camera(delta: float) -> void:
 	var rotation_change: float = 0.0
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
-		var mouse_position = get_viewport().get_mouse_position()
+		var mouse_position: Vector2 = get_viewport().get_mouse_position()
 		if last_physics_process_mouse_position_average != 0.0:
 			var mouse_position_delta: float = mouse_position.x - last_physics_process_mouse_position_average
 			if mouse_position_delta > 0:
