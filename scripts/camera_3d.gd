@@ -8,6 +8,7 @@ const AVERAGE_SAMPLES: int = 5
 const CAMERA_ZOOM_SPEED: float = 0.05
 const CAMERA_ZOOM_MIN: float = 2.0
 const CAMERA_ZOOM_MAX: float = 9.0
+const CAMERA_MOVEMENT_SPEED: float = 15.0
 const CAMERA_ROTATION_SPEED: float = 2.0
 
 func get_camera_position_y(z: float) -> float:
@@ -18,7 +19,7 @@ func get_camera_rotation_x(z: float) -> float:
 	return -30.0 - z * 5.0
 
 
-func handle_zoom(event: InputEventMouseButton) -> void:
+func handle_camera_zoom(event: InputEventMouseButton) -> void:
 	var camera_position_difference: Vector3 = global_position - rotation_helper.global_position
 	camera_position_difference.y = 0.0
 	var camera_distance = camera_position_difference.length()
@@ -34,6 +35,23 @@ func handle_zoom(event: InputEventMouseButton) -> void:
 			rotation_degrees.x = get_camera_rotation_x(position.z)
 
 
+func move_camera(delta: float) -> void:
+	var camera_movement: Vector3 = Vector3.ZERO
+	if Input.is_action_pressed("camera_forward"):
+		camera_movement.z = -delta
+	elif Input.is_action_pressed("camera_backward"):
+		camera_movement.z = delta
+	elif Input.is_action_pressed("camera_left"):
+		camera_movement.x = -delta
+	elif Input.is_action_pressed("camera_right"):
+		camera_movement.x = delta
+	camera_movement *= CAMERA_MOVEMENT_SPEED
+	if camera_movement != Vector3.ZERO:
+		var global_movement: Vector3 = to_global(camera_movement) - global_position
+		global_movement.y = 0.0
+		rotation_helper.position += global_movement
+
+
 func rotate_camera(delta: float) -> void:
 	var rotation_change: float = 0.0
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
@@ -42,7 +60,7 @@ func rotate_camera(delta: float) -> void:
 			var mouse_position_delta: float = mouse_position.x - last_physics_process_mouse_position_average
 			if mouse_position_delta > 0:
 				rotation_change = -1.0
-			elif  mouse_position_delta < 0:
+			elif mouse_position_delta < 0:
 				rotation_change = 1.0
 	else:
 		if Input.is_action_pressed("rotate_camera_right"):
@@ -77,8 +95,9 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	rotate_camera(delta)
 	update_mouse_position_average()
+	move_camera(delta)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		handle_zoom(event)
+		handle_camera_zoom(event)
