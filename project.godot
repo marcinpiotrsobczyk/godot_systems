@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Systems"
-run/main_scene="uid://qrhbby8fgl0"
+run/main_scene="uid://dmb204j38agjl"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Quit="*res://scripts/quit.gd"
+Sound="*res://scripts/sound.gd"
 
 [input]
 
@@ -59,4 +60,5 @@ rotate_camera_right={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

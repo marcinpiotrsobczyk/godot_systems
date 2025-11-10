@@ -1,0 +1,75 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://8cvc758ktl81"]
+
+[ext_resource type="FontFile" uid="uid://debjxe0mw2m1n" path="res://assets/bebas_neue/BebasNeue-Regular.ttf" id="1_1cg1g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cg1g"]
+bg_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+border_width_bottom = 8
+border_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cg1g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yml6h"]
+bg_color = Color(0.62352943, 0.62352943, 0.8745098, 1)
+border_width_bottom = 4
+border_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jv3y7"]
+bg_color = Color(0.49803922, 0.49803922, 0.7490196, 1)
+border_width_bottom = 8
+border_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wedx2"]
+bg_color = Color(0.7490196, 0.7490196, 1, 1)
+border_width_bottom = 4
+border_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22cha"]
+bg_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 30
+Button/styles/disabled = SubResource("StyleBoxFlat_1cg1g")
+Button/styles/focus = SubResource("StyleBoxEmpty_1cg1g")
+Button/styles/hover = SubResource("StyleBoxFlat_yml6h")
+Button/styles/normal = SubResource("StyleBoxFlat_jv3y7")
+Button/styles/pressed = SubResource("StyleBoxFlat_wedx2")
+Label/colors/font_color = Color(0.49803922, 0.49803922, 0.7490196, 1)
+Label/colors/font_shadow_color = Color(0.49803922, 0.49803922, 0.49803922, 0.49803922)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_1cg1g")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_22cha")
+VBoxContainer/constants/separation = 10
