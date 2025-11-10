@@ -5,17 +5,34 @@
 [sub_resource type="GDScript" id="GDScript_l6cm7"]
 script/source = "extends Control
 
+@onready var main_control: Control = $Background/MaineMenuContainer
+@onready var options_control: Control = $Background/OptionsContainer
 
-func _on_start_game_pressed() -> void:
+
+func show_only(control: Control) -> void:
+	main_control.visible = false
+	options_control.visible = false
+	control.visible = true
+
+func _ready() -> void:
+	show_only(main_control)
+	show_only(main_control)
+
+
+func _on_new_character_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://scenes/camera_following_player.tscn\")
 
 
 func _on_options_pressed() -> void:
-	pass
+	show_only(options_control)
 
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_back_pressed() -> void:
+	show_only(main_control)
 "
 
 [node name="MainMenu" type="Control"]
@@ -27,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_l6cm7")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,62 +53,104 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l6cm7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MaineMenuContainer" type="PanelContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l6cm7")
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MaineMenuContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+
+[node name="GameTitle" type="Label" parent="Background/MaineMenuContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "forgottensorcery"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Background/MaineMenuContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 
-[node name="VBoxContainerButtons" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainerButtons" type="VBoxContainer" parent="Background/MaineMenuContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_l6cm7")
 
-[node name="Continue" type="Button" parent="VBoxContainer/VBoxContainerButtons"]
+[node name="Continue" type="Button" parent="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 disabled = true
 text = "continue"
 
-[node name="StartGame" type="Button" parent="VBoxContainer/VBoxContainerButtons"]
+[node name="NewCharacter" type="Button" parent="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
-text = "start game"
+text = "new character"
 
-[node name="LoadGame" type="Button" parent="VBoxContainer/VBoxContainerButtons"]
+[node name="LoadCharacter" type="Button" parent="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
-text = "load game"
+text = "load character"
 
-[node name="Options" type="Button" parent="VBoxContainer/VBoxContainerButtons"]
+[node name="Options" type="Button" parent="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "options"
 
-[node name="Exit" type="Button" parent="VBoxContainer/VBoxContainerButtons"]
+[node name="Exit" type="Button" parent="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "exit"
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainerButtons/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainerButtons/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainerButtons/Exit" to="." method="_on_exit_pressed"]
+[node name="OptionsContainer" type="PanelContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_l6cm7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/OptionsContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+
+[node name="OptionsTitle" type="Label" parent="Background/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "options"
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+
+[node name="Back" type="Button" parent="Background/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "back"
+
+[connection signal="pressed" from="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons/NewCharacter" to="." method="_on_new_character_pressed"]
+[connection signal="pressed" from="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Background/OptionsContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

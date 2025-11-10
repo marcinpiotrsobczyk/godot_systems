@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://8cvc758ktl81"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://8cvc758ktl81"]
 
 [ext_resource type="FontFile" uid="uid://debjxe0mw2m1n" path="res://assets/bebas_neue/BebasNeue-Regular.ttf" id="1_1cg1g"]
 
@@ -51,6 +51,9 @@ shadow_size = 5
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22cha"]
 bg_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfn2s"]
+bg_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
@@ -72,4 +75,5 @@ Label/fonts/font = ExtResource("1_1cg1g")
 MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_top = 20
 Panel/styles/panel = SubResource("StyleBoxFlat_22cha")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_sfn2s")
 VBoxContainer/constants/separation = 10
