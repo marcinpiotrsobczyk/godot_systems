@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Quit="*res://scripts/quit.gd"
 Sound="*res://scripts/sound.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 toggle_camera_mode={

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmb204j38agjl"]
 
-[ext_resource type="Theme" uid="uid://8cvc758ktl81" path="res://scenes/resources/main_menu.tres" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://8cvc758ktl81" path="res://resources/main_menu.tres" id="1_l6cm7"]
 
 [sub_resource type="GDScript" id="GDScript_l6cm7"]
 script/source = "extends Control
@@ -32,12 +32,8 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_back_pressed() -> void:
-	show_only(main_control)
-
-
 func _on_music_volume_value_changed(value: float) -> void:
-	Sound.set_background_theme_volume(value - VOLUME_START_RANGE)
+	Sound.set_background_theme_volume(value)
 
 
 func _on_mute_check_box_toggled(toggled_on: bool) -> void:
@@ -45,6 +41,17 @@ func _on_mute_check_box_toggled(toggled_on: bool) -> void:
 		Sound.disable_background_theme_volume()
 	else:
 		Sound.enable_background_theme_volume()
+
+
+func _on_full_screen_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func _on_back_pressed() -> void:
+	show_only(main_control)
 "
 
 [node name="MainMenu" type="Control"]
@@ -162,28 +169,34 @@ theme = ExtResource("1_l6cm7")
 [node name="MusicVolumeInfo" type="Label" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "volume"
+text = "music volume"
 horizontal_alignment = 1
 
 [node name="MusicVolumeSlider" type="HSlider" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-step = 5.0
-value = 50.0
+max_value = 1.0
+step = 0.05
+value = 0.5
 
-[node name="BackgroundMusic" type="HBoxContainer" parent="Background/OptionsContainer/VBoxContainer"]
+[node name="Mute" type="HBoxContainer" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 
-[node name="MuteInfo" type="Label" parent="Background/OptionsContainer/VBoxContainer/BackgroundMusic"]
+[node name="MuteInfo" type="Label" parent="Background/OptionsContainer/VBoxContainer/Mute"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "mute"
 horizontal_alignment = 1
 
-[node name="MuteCheckBox" type="CheckBox" parent="Background/OptionsContainer/VBoxContainer/BackgroundMusic"]
+[node name="MuteCheckBox" type="CheckBox" parent="Background/OptionsContainer/VBoxContainer/Mute"]
 layout_mode = 2
+
+[node name="FullScreen" type="CheckButton" parent="Background/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "fullscreen"
 
 [node name="Back" type="Button" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
@@ -193,6 +206,8 @@ text = "back"
 [connection signal="pressed" from="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons/NewCharacter" to="." method="_on_new_character_pressed"]
 [connection signal="pressed" from="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Background/MaineMenuContainer/VBoxContainer/VBoxContainerButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="ready" from="Background/OptionsContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_value_changed" flags=6 binds= [0.5]]
 [connection signal="value_changed" from="Background/OptionsContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_value_changed"]
-[connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/BackgroundMusic/MuteCheckBox" to="." method="_on_mute_check_box_toggled"]
+[connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/Mute/MuteCheckBox" to="." method="_on_mute_check_box_toggled"]
+[connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/FullScreen" to="." method="_on_full_screen_toggled"]
 [connection signal="pressed" from="Background/OptionsContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

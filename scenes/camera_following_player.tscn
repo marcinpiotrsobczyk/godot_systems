@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dh3n15yh0wskq" path="res://scripts/player.gd" id="2_8gnqd"]
 [ext_resource type="Script" uid="uid://bma5w2u6gmhhu" path="res://scripts/camera_3d.gd" id="2_eldjp"]
-[ext_resource type="Material" uid="uid://42n3alpifqpu" path="res://scenes/resources/camera_following_player.tres" id="3_8gnqd"]
+[ext_resource type="Material" uid="uid://42n3alpifqpu" path="res://resources/simplex_shader_material.tres" id="3_8gnqd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rdmm2"]
 

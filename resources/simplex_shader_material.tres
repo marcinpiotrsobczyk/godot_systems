@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://42n3alpifqpu"]
 
-[ext_resource type="Shader" uid="uid://cb566evgu4qgy" path="res://scenes/resources/simplex.gdshader" id="1_jbpng"]
+[ext_resource type="Shader" uid="uid://tnt7n8ahlld1" path="res://resources/simplex.gdshader" id="1_jbpng"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jbpng"]
 
