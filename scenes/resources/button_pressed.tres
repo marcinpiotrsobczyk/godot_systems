@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://dysdaukoliosy"]
+
+[resource]
+bg_color = Color(0.7490196, 0.7490196, 1, 1)
+border_width_bottom = 4
+border_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
