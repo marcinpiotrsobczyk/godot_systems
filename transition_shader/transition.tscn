@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://blrdgyjcwm7et"]
+
+[ext_resource type="Material" uid="uid://bl7elpb18g2b0" path="res://transition_shader/transition_material.tres" id="1_7hd2w"]
+[ext_resource type="Texture2D" uid="uid://dxrd5q3ndgy74" path="res://transition_shader/icon.svg" id="1_avvts"]
+
+[node name="Transition" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_7hd2w")
+texture = ExtResource("1_avvts")
+centered = false

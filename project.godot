@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Quit="*res://scripts/quit.gd"
 Sound="*res://scripts/sound.gd"
+State="*res://reactive_ui/state.gd"
 
 [display]
 
