@@ -1,0 +1,183 @@
+[gd_scene load_steps=4 format=3 uid="uid://r1lrudtrrq"]
+
+[ext_resource type="Script" uid="uid://d38l52uhvw14" path="res://reactive_ui/reactive_ui.gd" id="1_eutt6"]
+[ext_resource type="Script" uid="uid://b0yv40kydiqu" path="res://reactive_ui/party_menu.gd" id="2_1mb3m"]
+[ext_resource type="Script" uid="uid://da3ool7m12gpo" path="res://reactive_ui/hero_list.gd" id="3_rrxdf"]
+
+[node name="ReactiveUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eutt6")
+
+[node name="TraditionalMenu" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_vertical = 2
+
+[node name="TraditionalLabel" type="Label" parent="TraditionalMenu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TraditionalTextEdit" type="TextEdit" parent="TraditionalMenu"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ReactivePartyMenu" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Party" type="HBoxContainer" parent="ReactivePartyMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1mb3m")
+
+[node name="Available" type="VBoxContainer" parent="ReactivePartyMenu/Party"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AvailableInfo" type="Label" parent="ReactivePartyMenu/Party/Available"]
+layout_mode = 2
+text = "Heroes for Hire"
+
+[node name="AvailableContainer" type="PanelContainer" parent="ReactivePartyMenu/Party/Available"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="AvailableList" type="VBoxContainer" parent="ReactivePartyMenu/Party/Available/AvailableContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+script = ExtResource("3_rrxdf")
+metadata/_custom_type_script = "uid://da3ool7m12gpo"
+
+[node name="HireButton" type="Button" parent="ReactivePartyMenu/Party/Available"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hire"
+
+[node name="Selected" type="VBoxContainer" parent="ReactivePartyMenu/Party"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeroInfo" type="Label" parent="ReactivePartyMenu/Party/Selected"]
+layout_mode = 2
+text = "Hero Information"
+
+[node name="SelectedName" type="HBoxContainer" parent="ReactivePartyMenu/Party/Selected"]
+layout_mode = 2
+
+[node name="NameInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedName"]
+layout_mode = 2
+text = "Name"
+
+[node name="EditName" type="TextEdit" parent="ReactivePartyMenu/Party/Selected/SelectedName"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectedStats" type="HBoxContainer" parent="ReactivePartyMenu/Party/Selected"]
+layout_mode = 2
+
+[node name="SelectedMarginLeft" type="MarginContainer" parent="ReactivePartyMenu/Party/Selected/SelectedStats"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="StatsList" type="GridContainer" parent="ReactivePartyMenu/Party/Selected/SelectedStats"]
+layout_mode = 2
+columns = 2
+
+[node name="StrengthInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+layout_mode = 2
+text = "strength:"
+
+[node name="Strength" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DexterityInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+layout_mode = 2
+text = "dexterity:"
+
+[node name="Dexterity" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ConstitutionInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+layout_mode = 2
+text = "constitution:"
+
+[node name="Constitution" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IntelligenceInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+layout_mode = 2
+text = "intelligence:"
+
+[node name="Intelligence" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WisdomInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+layout_mode = 2
+text = "widsom:"
+
+[node name="Wisdom" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CharismaInfo" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+layout_mode = 2
+text = "charisma:"
+
+[node name="Charisma" type="Label" parent="ReactivePartyMenu/Party/Selected/SelectedStats/StatsList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SelectedMarginRight" type="MarginContainer" parent="ReactivePartyMenu/Party/Selected/SelectedStats"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Hired" type="VBoxContainer" parent="ReactivePartyMenu/Party"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HiredInfo" type="Label" parent="ReactivePartyMenu/Party/Hired"]
+layout_mode = 2
+text = "Party Members"
+
+[node name="HiredContainer" type="PanelContainer" parent="ReactivePartyMenu/Party/Hired"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="HiredList" type="VBoxContainer" parent="ReactivePartyMenu/Party/Hired/HiredContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+script = ExtResource("3_rrxdf")
+metadata/_custom_type_script = "uid://da3ool7m12gpo"
+
+[node name="RemoveButton" type="Button" parent="ReactivePartyMenu/Party/Hired"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Remove"
