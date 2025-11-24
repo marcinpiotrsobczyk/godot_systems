@@ -9,7 +9,7 @@ const CAMERA_ZOOM_SPEED: float = 0.05
 const CAMERA_ZOOM_MIN: float = 2.0
 const CAMERA_ZOOM_MAX: float = 9.0
 const CAMERA_MOVEMENT_SPEED: float = 15.0
-const CAMERA_ROTATION_SPEED: float = 2.0
+const CAMERA_ROTATION_SPEED: float = 3.0
 
 func get_camera_position_y(z: float) -> float:
     return z/2.0 + z*z / 10.0
@@ -19,16 +19,16 @@ func get_camera_rotation_x(z: float) -> float:
     return -30.0 - z * 5.0
 
 
-func handle_camera_zoom(event: InputEventMouseButton) -> void:
+func handle_camera_zoom(event: InputEvent) -> void:
     var camera_position_difference: Vector3 = global_position - rotation_helper.global_position
     camera_position_difference.y = 0.0
     var camera_distance = camera_position_difference.length()
-    if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+    if event.is_action_pressed("camera_zoom_out"):
         if camera_distance < CAMERA_ZOOM_MAX:
             position.z += camera_distance *  CAMERA_ZOOM_SPEED
             position.y = get_camera_position_y(position.z)
             rotation_degrees.x = get_camera_rotation_x(position.z)
-    elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+    elif event.is_action_pressed("camera_zoom_in"):
         if camera_distance > CAMERA_ZOOM_MIN:
             position.z -= camera_distance *  CAMERA_ZOOM_SPEED
             position.y = get_camera_position_y(position.z)
@@ -39,7 +39,7 @@ func move_camera(delta: float) -> void:
     var camera_movement: Vector3 = Vector3.ZERO
     if Input.is_action_pressed("camera_forward"):
         camera_movement.z = -delta
-    elif Input.is_action_pressed("camera_backward"):
+    elif Input.is_action_pressed("camera_back"):
         camera_movement.z = delta
     elif Input.is_action_pressed("camera_left"):
         camera_movement.x = -delta
@@ -64,9 +64,9 @@ func rotate_camera(delta: float) -> void:
                 rotation_change = 1.0
     else:
         if Input.is_action_pressed("rotate_camera_right"):
-            rotation_change = 1.0
-        elif Input.is_action_pressed("rotate_camera_left"):
             rotation_change = -1.0
+        elif Input.is_action_pressed("rotate_camera_left"):
+            rotation_change = 1.0
     if rotation_change != 0.0:
         rotation_helper.rotate(Vector3.UP, rotation_change * delta * CAMERA_ROTATION_SPEED)
 
@@ -93,11 +93,12 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-    rotate_camera(delta)
     update_mouse_position_average()
-    move_camera(delta)
+    if not GUI.is_fullscreen_menu_on():
+        rotate_camera(delta)
+        move_camera(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-    if event is InputEventMouseButton:
+    if not GUI.is_fullscreen_menu_on():
         handle_camera_zoom(event)

@@ -16,8 +16,10 @@ func show_only(control: Control = null) -> void:
     if control:
         visible = true
         control.visible = true
+        GUI.set_fullscreen_menu_on(true)
     else:
         visible = false
+        GUI.set_fullscreen_menu_on(false)
 
 func _ready() -> void:
     show_only(null)

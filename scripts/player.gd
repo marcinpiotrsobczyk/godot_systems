@@ -27,10 +27,10 @@ func move_player(delta: float) -> void:
 
 
 func shoot_ray() -> Dictionary:
-    var mouse_position: Vector2 = get_viewport().get_mouse_position()
+    var selected_position: Vector2 = get_viewport().get_mouse_position()
     var ray_length: float = 1000.0
-    var from: Vector3 = camera.project_ray_origin(mouse_position)
-    var to: Vector3 = from + camera.project_ray_normal(mouse_position) * ray_length
+    var from: Vector3 = camera.project_ray_origin(selected_position)
+    var to: Vector3 = from + camera.project_ray_normal(selected_position) * ray_length
     var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
     var params: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
     params.collide_with_areas = true
