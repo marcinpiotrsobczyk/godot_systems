@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://8cvc758ktl81"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://8cvc758ktl81"]
 
 [ext_resource type="FontFile" uid="uid://debjxe0mw2m1n" path="res://assets/bebas_neue/BebasNeue-Regular.ttf" id="1_1cg1g"]
 [ext_resource type="StyleBox" uid="uid://c4mqtp83a2dwd" path="res://resources/menu/button_disabled.tres" id="1_sfn2s"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://dysdaukoliosy" path="res://resources/menu/button_pressed.tres" id="4_4w8jp"]
 [ext_resource type="StyleBox" uid="uid://bho8gappytpv7" path="res://resources/menu/slider_normal.tres" id="5_idsna"]
 [ext_resource type="StyleBox" uid="uid://ckbkii81lyect" path="res://resources/menu/slider_grabber.tres" id="5_oc0oi"]
+[ext_resource type="StyleBox" uid="uid://djnk4xqpaqqib" path="res://resources/menu/button_hover_pressed.tres" id="5_ulgey"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cg1g"]
 
@@ -37,6 +38,8 @@ CheckBox/styles/hover = ExtResource("2_emyov")
 CheckBox/styles/hover_pressed = ExtResource("4_4w8jp")
 CheckBox/styles/normal = ExtResource("3_o454d")
 CheckBox/styles/pressed = ExtResource("4_4w8jp")
+CheckButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+CheckButton/styles/hover_pressed = ExtResource("5_ulgey")
 HSlider/styles/grabber_area = ExtResource("5_oc0oi")
 HSlider/styles/grabber_area_highlight = ExtResource("5_oc0oi")
 HSlider/styles/slider = ExtResource("5_idsna")
