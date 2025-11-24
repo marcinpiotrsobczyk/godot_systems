@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://qrhbby8fgl0"]
+[gd_scene load_steps=8 format=3 uid="uid://qrhbby8fgl0"]
 
 [ext_resource type="Script" uid="uid://dh3n15yh0wskq" path="res://scripts/player.gd" id="2_8gnqd"]
 [ext_resource type="Script" uid="uid://bma5w2u6gmhhu" path="res://scripts/camera_3d.gd" id="2_eldjp"]
 [ext_resource type="Material" uid="uid://42n3alpifqpu" path="res://resources/simplex_shader_material.tres" id="3_8gnqd"]
+[ext_resource type="PackedScene" uid="uid://dmb204j38agjl" path="res://scenes/main_menu.tscn" id="4_1oxlm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rdmm2"]
 
@@ -58,3 +59,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/MeshInstance2/Area3D"]
 shape = SubResource("BoxShape3D_eldjp")
+
+[node name="MainMenu" parent="." instance=ExtResource("4_1oxlm")]

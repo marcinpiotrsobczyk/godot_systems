@@ -8,13 +8,13 @@ const PLAYER_MOVEMENT_SPEED: float = 3.0
 
 
 func handle_desired_position(event: InputEventMouseButton) -> void:
-        if event.button_index == MOUSE_BUTTON_LEFT:
-            var raycast_result: Dictionary = shoot_ray()
-            if raycast_result.has("position") and raycast_result["position"] is Vector3:
-                print("position valid, raycast result: ", raycast_result)
-                desired_player_position = raycast_result["position"]
-            else:
-                print("position invalid, raycast result: ", raycast_result)
+    if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
+        var raycast_result: Dictionary = shoot_ray()
+        if raycast_result.has("position") and raycast_result["position"] is Vector3:
+            print_debug("position valid, raycast result: ", raycast_result)
+            desired_player_position = raycast_result["position"]
+        else:
+            print_debug("position invalid, raycast result: ", raycast_result)
 
 
 func move_player(delta: float) -> void:
@@ -45,6 +45,6 @@ func _physics_process(delta: float) -> void:
     move_player(delta)
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         handle_desired_position(event)

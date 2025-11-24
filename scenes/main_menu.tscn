@@ -10,48 +10,64 @@ script/source = "extends Control
 
 const VOLUME_START_RANGE: float = 50.0
 
-func show_only(control: Control) -> void:
-	main_control.visible = false
-	options_control.visible = false
-	control.visible = true
+func show_only(control: Control = null) -> void:
+    main_control.visible = false
+    options_control.visible = false
+    if control:
+        visible = true
+        control.visible = true
+    else:
+        visible = false
 
 func _ready() -> void:
-	#Sound.set_background_theme_volume(VOLUME_START_RANGE)
-	show_only(main_control)
+    show_only(null)
+
+
+func _process(_delta: float) -> void:
+    if Input.is_action_just_pressed(\"toggle_menu\"):
+        if not visible:
+            show_only(main_control)
+        else:
+            show_only(null)
+
+
+func _unhandled_input(_event: InputEvent) -> void:
+    if visible:
+        accept_event()
 
 
 func _on_new_character_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://scenes/camera_following_player.tscn\")
+    get_tree().change_scene_to_file(\"res://scenes/camera_following_player.tscn\")
 
 
 func _on_options_pressed() -> void:
-	show_only(options_control)
+    show_only(options_control)
 
 
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+    get_tree().quit()
 
 
 func _on_music_volume_value_changed(value: float) -> void:
-	Sound.set_background_theme_volume(value)
+    Sound.set_background_theme_volume(value)
 
 
 func _on_mute_check_box_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		Sound.disable_background_theme_volume()
-	else:
-		Sound.enable_background_theme_volume()
+    if toggled_on:
+        Sound.disable_background_theme_volume()
+    else:
+        Sound.enable_background_theme_volume()
 
 
 func _on_full_screen_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+    if toggled_on:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+    else:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func _on_back_pressed() -> void:
-	show_only(main_control)
+    show_only(main_control)
 "
 
 [node name="MainMenu" type="Control"]
@@ -198,6 +214,10 @@ layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "fullscreen"
 
+[node name="Scale" type="OptionButton" parent="Background/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+
 [node name="Back" type="Button" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
@@ -210,4 +230,5 @@ text = "back"
 [connection signal="value_changed" from="Background/OptionsContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_value_changed"]
 [connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/Mute/MuteCheckBox" to="." method="_on_mute_check_box_toggled"]
 [connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="pressed" from="Background/OptionsContainer/VBoxContainer/Scale" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Background/OptionsContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
