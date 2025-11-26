@@ -8,15 +8,13 @@
 [ext_resource type="StyleBox" uid="uid://bho8gappytpv7" path="res://resources/menu/slider_normal.tres" id="5_idsna"]
 [ext_resource type="StyleBox" uid="uid://ckbkii81lyect" path="res://resources/menu/slider_grabber.tres" id="5_oc0oi"]
 [ext_resource type="StyleBox" uid="uid://djnk4xqpaqqib" path="res://resources/menu/button_hover_pressed.tres" id="5_ulgey"]
+[ext_resource type="StyleBox" uid="uid://j5liejfwa0dq" path="res://resources/menu/panel_container_panel.tres" id="9_e85dr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cg1g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_22cha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22cha"]
-bg_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfn2s"]
 bg_color = Color(0.24705882, 0.24705882, 0.37254903, 1)
 
 [resource]
@@ -54,5 +52,7 @@ Label/fonts/font = ExtResource("1_1cg1g")
 MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_top = 20
 Panel/styles/panel = SubResource("StyleBoxFlat_22cha")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_sfn2s")
+PanelContainer/styles/panel = ExtResource("9_e85dr")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/styles/panel = ExtResource("3_o454d")
 VBoxContainer/constants/separation = 10

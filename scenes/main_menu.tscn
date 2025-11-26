@@ -68,6 +68,12 @@ func _on_full_screen_toggled(toggled_on: bool) -> void:
         DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
+func _on_scale_control_item_selected(index: int) -> void:
+    var options: Array[float] = [1, 0.75, 0.5, 0.25]
+    var value: float = options[index]
+    get_tree().root.scaling_3d_scale = value
+
+
 func _on_back_pressed() -> void:
     show_only(main_control)
 "
@@ -82,6 +88,7 @@ grow_vertical = 2
 script = SubResource("GDScript_l6cm7")
 
 [node name="Background" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.49803922)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,9 +223,20 @@ layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "fullscreen"
 
-[node name="Scale" type="OptionButton" parent="Background/OptionsContainer/VBoxContainer"]
+[node name="ScaleControl" type="OptionButton" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/text = "100%"
+popup/item_0/id = 0
+popup/item_1/text = "75%"
+popup/item_1/id = 1
+popup/item_2/text = "50%"
+popup/item_2/id = 2
+popup/item_3/text = "25%"
+popup/item_3/id = 3
 
 [node name="Back" type="Button" parent="Background/OptionsContainer/VBoxContainer"]
 layout_mode = 2
@@ -232,5 +250,5 @@ text = "back"
 [connection signal="value_changed" from="Background/OptionsContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_value_changed"]
 [connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/Mute/MuteCheckBox" to="." method="_on_mute_check_box_toggled"]
 [connection signal="toggled" from="Background/OptionsContainer/VBoxContainer/FullScreen" to="." method="_on_full_screen_toggled"]
-[connection signal="pressed" from="Background/OptionsContainer/VBoxContainer/Scale" to="." method="_on_back_pressed"]
+[connection signal="item_selected" from="Background/OptionsContainer/VBoxContainer/ScaleControl" to="." method="_on_scale_control_item_selected"]
 [connection signal="pressed" from="Background/OptionsContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
